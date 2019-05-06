@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Fredoka+One|Hammersmith+One|Luckiest+Guy|Sigmar+One|Varela" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+    <title>Editor</title>
+    
+
+    <script src="assets/js/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="assets/js/editor.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/interactjs@1.3.4/dist/interact.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        
+        <div class="row" style="padding-bottom:10%"></div>
+        
+        <div class="row">
+            <div class="editorFinal" >
+                <video id="video" width="100%" height="100%" controls autoplay>
+                    <source id="vidsrc" src="" type="video/mp4">
+                </video>   
+            </div>
+        </div>
+        <img src="" id="choice1" class="sBtn draggable qbox">  
+        <img src="" id="choice2" class="sBtn draggable qbox">  
+        <img src="" id="choice3" class="sBtn draggable qbox">  
+        
+        
+        <div class="card card-edit-shape">
+            <div class="card-body">
+                <div class="row ">
+                    <div class="col-12 text-center">Button Size</div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-4">Width: </div>
+                    <div class="col-8"><input id="width" class="inputS" type="number" value=""></div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-4">Height: </div>
+                    <div class="col-8"><input id="height" class="inputS" type="number" value=""></div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-12"><p class="text-center">Current value : <span id="cVal">250x100</span></p></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <button class="material-icons" id="change">Change</button>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>  
+        
+        <div class="card card-export">
+            <div class="card-body">
+                <div class="row ">
+                    
+                    <div class="col-12">
+                        <button class="material-icons" id="export">Export</button>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="card card-edit-final">
+            <div class="card-body">
+                <div class="row ">
+                    <div class="col-12 text-center">Timeline</div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-5">Question At: </div>
+                    <div class="col-7"><input class="inputS" type="number" value="" id="qid"></div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-5">Loop From: </div>
+                    <div class="col-7"><input class="inputS" type="number" value="" id="lid"></div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-5">To: </div>
+                        <div class="col-7"><input class="inputS" type="number" value="" id="lid2"></div>
+                    </div>
+                <hr>
+                <div class="row">
+                    <div class="col-12"><p >The question buttons will appear at : <span id="qVal">x</span></p></div>
+                    <div class="col-12"><p >The clip will loop from second : <span id="lVal1">x</span> to <span id="lVal2">x</span></p></div>
+                </div>
+    
+                <div class="row">
+                    <div class="col-4"></div>
+                    <div class="col-4">
+                        <button class="custom-btn-edit2 material-icons" id="apply">Apply</button>
+                    </div>
+                    <div class="col-4"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card card-info">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col-8"><p class="text-center"><b>Useful Information</b> </p></div>
+                    <div class="col-2"><i class="material-icons" id="hideB">arrow_drop_up</i></div>
+                </div>
+                
+                <hr>
+                <div class="row">
+                    <div class="col-12">
+                        <div id="tohide">
+                            <p><b>Main Clip Chosen :  </b><video width="35%" height="50%" controls autoplay><source id="d0" src="" type="video/mp4"></video> </p>
+                            <hr>
+                            <p><b>First Clip Chosen :  </b><video width="35%" height="50%" controls autoplay><source id="d1" src="" type="video/mp4"></video></p>
+                            <hr>
+                            <p><b>Second Clip Chosen :  </b><video width="35%" height="50%" controls autoplay><source id="d2" src="" type="video/mp4"></video></p>
+                            <hr>
+                            <p><b>Third Clip Chosen :  </b><video width="35%" height="50%" controls autoplay><source id="d3" src="" type="video/mp4"></video></p>
+                            <hr>
+                            <p><b>Final Clip Chosen :  </b><video width="35%" height="50%" controls autoplay><source id="d4" src="" type="video/mp4"></video></p>
+                            <hr>
+                            <p><b>Button linked to First Clip :  </b><img class="testimg" id="d5"></p>
+                            <hr>
+                            <p><b>Button linked to Second Clip :  </b><img class="testimg" id="d6"></p>
+                            <hr>
+                            <p><b>Button linked to Third Clip (Right Choice) :  </b><img class="testimg" id="d7"></p>
+                        </div>   
+                    </div>
+                </div>
+                     
+            </div>
+        </div>
+
+    </div>
+    
+</body>
+
+</html>

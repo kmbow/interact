@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Fredoka+One|Hammersmith+One|Luckiest+Guy|Sigmar+One|Varela" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+    <title>Interact - ILK Version</title>
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.9/vue.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="assets/js/main.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+    <div class="container">
+
+        <div class="row" style="padding-bottom:7%"></div>
+            
+        <div class="row">
+            <div class="col-12" >
+                <div class="card card-custom animated fadeIn">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-2"></div>
+                            <div class="col-8 " style="padding-left: 90px;">
+                                <div class="row">
+                                    <div class="col-1"></div>
+                                    <div class="col-1 "><div class="nStep activeStep"></div></div>
+                                    <div class="col-1"><div class="nStep" id="pt1"></div></div>
+                                    <div class="col-1"><div class="nStep" id="pt2"></div></div>
+                                    <div class="col-1"><div class="nStep" id="pt3"></div></div>
+                                    <div class="col-1"><div class="nStep" id="pt4"></div></div>
+                                    <div class="col-1"><div class="nStep" id="pt5"></div></div>
+                                    <div class="col-1"><div class="nStep" id="pt6"></div></div>
+                                    <div class="col-1"><div class="nStep" id="pt7"></div></div>
+                                    <div class="col-1"><div class="nStep" id="pt8"></div></div>
+                                    
+                                </div>
+                                
+                                <div id="dynamicPad" style="padding-bottom:15%"></div>
+                                <div>
+                                    <p class="text-center text-muted holdTitle"></p>
+                                    <p class="text-center specialTxt holdText"></p>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-12 tab-content">
+                                        <div class="tab-pane active" id="sFolder">
+                                            <div class="col-12" id="append">
+                                                <p class="text-center text-muted" id="holdTitle">Video Folder</p>
+                                                <p class="text-center specialTxt" id="holdText">Select The <b>Videos</b> Folder</p>
+                                                <input id="file" type="file" webkitdirectory directory multiple/>
+                                                <label for="file">Choose a file</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="tab-pane" id="sFile">
+                                            <div id="toAppend" style="width:100%">
+                                                <div class="row">
+                                                    <div class="col-4" v-for="post in postList">
+                                                        <button class="card card-options animated fadeIn" v-bind:value="post.source">
+                                                            <div class="card-body">{{post.name}}</div>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="col-2"></div>
+                        </div>
+                        <i class="custom-btn material-icons" id="nextB">send</i>
+                    </div>
+                </div>
+
+                <div>
+                    
+                </div>
+                
+                <div class="img-custom" >
+                    <!-- <video id="video" width="100%" height="100%" controls>
+                        <source id="vidsrc" src="" type="video/mp4">
+                    </video> -->
+                </div>
+                
+            </div>
+        </div>
+        
+       
+       
+    </div>
+    
+</body>
+
+</html>

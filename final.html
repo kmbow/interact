@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Fredoka+One|Hammersmith+One|Luckiest+Guy|Sigmar+One|Varela" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+    <title>Interactive</title>
+    
+
+    <script src="assets/js/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- <script src="editor.js"></script> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/interactjs@1.3.4/dist/interact.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        
+        <div class="row" style="padding-bottom:10%"></div>
+        
+        <div class="row">
+            <div class="editorFinal" >
+                <video id="video" width="100%" height="100%" autoplay>
+                    <source id="vidsrc" src="" type="video/mp4">
+                </video>   
+            </div>
+        </div>
+        <button id="playVid">PLAY</button>
+        <img src="" id="choice1" class="sBtn qbox" style="visibility: hidden;" >  
+        <img src="" id="choice2" class="sBtn qbox" style="visibility: hidden;">  
+        <img src="" id="choice3" class="sBtn qbox" style="visibility: hidden;"> 
+        <div class="card" id="menu">
+            <div class="card-body"><p class="text text-center" style="color:white; padding-top: 10px"><b>More Choices</b></p></div>
+        </div> 
+    </div>  
+    
+    
+    <script>
+        $(document).ready(function(){
+            var options = [];
+            var getitem = localStorage.getItem("prod");
+            prod = JSON.parse(getitem);
+            
+            if(prod[3]===prod[4]){
+                console.log("No final video");
+                prod.splice(4, 0, "outro.mp4");
+            };
+
+
+            var timeQ = localStorage.getItem("timeQ");
+            var timeL1 = localStorage.getItem("timeL1");
+            var timeL2 = localStorage.getItem("timeL2");
+            var toAnimate = false;
+            var c1Chosen = false;
+            var c2Chosen = false;
+            var c3Chosen = false;
+            var clicked = false;
+            var choice1 = $("#choice1");
+            var choice2 = $("#choice2");
+            var choice3 = $("#choice3");
+            var replay = 0;
+            var toAnimate = false;
+            var clicked = false;
+            var hide = 0;
+            var dismiss = true;
+
+            var b1x = localStorage.getItem("val1x");
+            var b1y = localStorage.getItem("val1y");
+            var b2x = localStorage.getItem("val2x");
+            var b2y = localStorage.getItem("val2y");
+            var b3x = localStorage.getItem("val3x");
+            var b3y = localStorage.getItem("val3y");
+
+            $("#vidsrc").attr("src",prod[0]);
+            document.getElementById("video").load();
+
+            // if(dismiss = true){
+            //     alert("After dismissing this alert, directly press CTRL + S and save this page as Webpage complete. Move your media files onto the location of the saved files.");
+            //     dismiss = false;
+            // }
+           
+
+            $("#choice1").attr("src", prod[5]);
+            $("#choice2").attr("src", prod[6]);
+            $("#choice3").attr("src", prod[7]);
+            
+            var t1x = b1x + "px";
+            var t1y = b1y + "px";
+            var t2x = b2x + "px";
+            var t2y = b2y + "px";
+            var t3x = b3x + "px";
+            var t3y = b3y + "px";
+
+            $("#choice1").attr("data-x", b1x);
+            $("#choice2").attr("data-x", b2x);
+            $("#choice3").attr("data-x", b3x);
+
+            $("#choice1").attr("data-y", b1y);
+            $("#choice2").attr("data-y", b2y);
+            $("#choice3").attr("data-y", b3y);
+
+            $("#choice1").css({'transform' : 'translate(' + t1x +', ' + t1y + ')'});
+            $("#choice2").css({'transform' : 'translate(' + t2x +', ' + t2y + ')'});
+            $("#choice3").css({'transform' : 'translate(' + t3x +', ' + t3y + ')'});
+
+          $("#playVid").click(function(){
+              video.play();
+              setTimeout(() => {
+                $("#playVid").css("visibility","hidden")
+              }, 500);
+            })
+        
+            setInterval(() => {
+                startVideo();
+                    
+            }, 1000);
+        
+
+    
+
+
+            function startVideo(){
+                //This makes the 3 buttons appear at the time the user has set at "Question At"
+                if(video.currentTime >= timeQ){
+                    setTimeout(() => {choice1.css("visibility","visible")}, 100);
+                    setTimeout(() => {choice2.css("visibility","visible")}, 200);
+                    setTimeout(() => {choice3.css("visibility","visible")}, 300);
+                    setTimeout(() => {$(".qbox").removeClass("lightSpeedIn")}, 700);
+                    toAnimate = false;
+                }
+                console.log(toAnimate);
+                
+                //if any button is clicked, this var is set the true and hides the button for the video to be watched without distraction
+                if(clicked == true){
+                    $(".qbox").css("visibility","hidden");
+                        
+                }
+                    
+                console.log(video.currentTime);
+
+                //once the video reaches the selected timeq, set choices to visible
+                if (video.currentTime >= timeQ){
+                    $(".qbox").css("visibility","visible");
+                }
+                if(video.currentTime >= 108 && video.currentTime<=109){
+                    toAnimate = true;
+                }
+                
+                //once the buttons are clicked, their opacity reduces to show the user that these choices have a;ready been made
+                if(c1Chosen == true){
+                    $("#choice1").css("opacity","0.62");
+                    // video.load();
+                }
+                if(c2Chosen == true){
+                    $("#choice2").css("opacity","0.62");
+                    // video.load();
+                }
+                if(c3Chosen == true){
+                    $("#choice3").css("opacity","0.62");
+                    // video.load();
+                }
+                replayC1();
+                replayC2();
+                replayC3();
+                replayGeneral();
+                replayFinal();
+
+                //this button appears after the right choice had been made and this function resets everything to initial
+                $("#menu").click(function(){
+                    toAnimate = true;
+                    $("#menu").css("visibility","hidden");
+                    $("#video").attr("src",prod[0]);
+                    video.currentTime=timeQ;
+                    clicked = true;
+                    replay = 0;
+                    c1Chosen = true;
+            
+                })
+
+                
+                //attr each clicked button with the corresponding video
+                $(choice1).click(function(){
+                
+                    $("#video").attr("src",prod[1]);
+                    clicked = true;
+                    replay = 1;
+                    c1Chosen = true;
+                    // video.play();
+                    
+            
+                })
+                
+                $(choice2).click(function(){
+                    $("#video").attr("src",prod[2]);
+                    clicked = true;
+                    c2Chosen = true;
+                    replay = 2;
+                    // video.play();
+                })
+                $(choice3).click(function(){
+                    $("#video").attr("src",prod[3]);
+                    clicked = true;
+                    c3Chosen = true;
+                    replay = 3;
+                    // video.play();
+                })
+            }
+            //these functions are checked every second and replay the main video each time unless the right choice has been made
+            function replayC1(){
+                if(replay==1 && video.ended){
+                    // toAnimate = true;
+                    $("#video").attr("src",prod[0]);
+                    video.currentTime=timeQ;
+                    replay = 0;
+                    video.load();
+                }
+                
+            }
+
+            function replayC2(){
+                if(replay==2 && video.ended){
+                    // toAnimate = true;
+                    $("#video").attr("src",prod[0]);
+                    video.currentTime=timeQ;
+                    replay = 0;
+                    video.load();
+                }
+            }
+            function replayC3(){
+                if(replay==3 && video.ended){
+                    $("#video").attr("src",prod[4]);
+                    $(".qbox").css("visibility","visible");
+                    replay = 4;
+                
+                }
+            }
+            function replayGeneral(){
+                if(replay==0 && video.ended){
+                    setTimeout(() => {
+                        replay = 0;
+                        video.currentTime=timeQ;
+                    }, 100);
+                }
+            }
+    
+            function replayFinal(){
+                if(replay == 4 && video.ended){
+                    video.pause();
+                    $("#menu").css("visibility","visible");  
+                }
+            }
+        })
+    </script>
+
+    
+</body>
+
+</html>
