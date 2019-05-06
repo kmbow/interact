@@ -1,0 +1,73 @@
+body,html{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+#starch{
+    position: absolute;
+    bottom: 45%;
+    left: 12%;
+}
+#glitter{
+    position: absolute;
+    bottom: 45%;
+    left: 45%;
+    
+}
+
+#glue{
+    position: absolute;
+    bottom: 45%;
+    left: 77%;
+}
+#question{
+    position: absolute;
+    top: 30px;
+    right: 300px;
+    width: 800px;
+    
+
+}
+.qbox{
+    width: 225px;
+    height: 100px;
+    animation-iteration-count: 1;
+    
+
+}
+.qbox:hover{
+    border:5px solid #ffffff;
+    transform: scale(1.2);
+    cursor: pointer;
+    animation: wobble 1s ;
+    animation-play-state: running;
+    animation-iteration-count: infinite;
+}
+.text{
+    color: white;
+    text-align: center;
+    font-size: 32px;
+}
+#menu{
+    background-color: rgba(255, 255, 255, 0.705);
+    width: 250px;
+    height: 150px;
+    border-color: white;
+    border-width: 5px;
+    visibility: hidden;
+    position: absolute;
+    bottom: 10%;
+    left: 43%;
+}
+#menu:hover{
+    border-color: white;
+    border-width: 5px;
+    transform: scale(1.2);
+    cursor: pointer;
+}
+#start{
+    color:white;
+    position: absolute;
+    top: 50%;
+    left: 45%;
+}
